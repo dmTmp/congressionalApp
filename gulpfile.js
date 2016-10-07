@@ -17,8 +17,8 @@ function compileFlow(inDir, outDir) {
     }
 }
 
-gulp.task('transform-flow', compileFlow('src/flow/*', 'www/js/*'));
-gulp.task('transform-index', compileFlow('src/index.jsx', 'www/*'));
+gulp.task('transform-flow', compileFlow('src/flow/*', 'www/js/'));
+gulp.task('transform-index', compileFlow('src/index.jsx', 'www/'));
 
 gulp.task('type-check', function () {
     gulp.src('src/flow/*.jsx')
