@@ -1,0 +1,9 @@
+[ignore]
+
+[include]
+src/flow/*
+src/index.jsx
+
+[libs]
+
+[options]
