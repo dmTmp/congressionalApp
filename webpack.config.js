@@ -3,18 +3,18 @@
 var webpack = require('webpack');
 
 module.exports = {
-  context: __dirname + '/src/',
-  devtool: "inline-sourcemap",
-  entry: "./index.jsx",
-  target: 'web',
+//  context: __dirname + '/src/',
+//  devtool: "inline-sourcemap",
+  entry: "./src/index.jsx",
+//  target: 'web',
   output: {
-    path: __dirname + "/www",
+    path: "./www",
     filename: "index.min.js"
   },
   module: {
     loaders: [
       {
-        test: [/\.js$/, /\.es6$/],
+        test: [/\.jsx$/],
         exclude: /node_modules/,
         loader: 'babel',
         query: {
