@@ -1,1 +1,1 @@
-﻿export default 'TEST TEST TEST STRING';
+﻿export default 'TEST TEST TEST STRING'
