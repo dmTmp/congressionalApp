@@ -23,6 +23,7 @@
   },
   "scripts": {
     "start": "http-server www",
-    "build": "webpack"
+    "build": "webpack",
+    "check": "eslint"
   }
 }

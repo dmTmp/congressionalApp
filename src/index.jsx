@@ -1,7 +1,7 @@
 // @flow
-//import React from 'react'
+//https://camjackson.net/post/9-things-every-reactjs-beginner-should-know
+import React from 'react'
 import ReactDOM from 'react-dom'
-//import z from './app.jsx'
+import z from './flow/app.jsx'
 
-//console.log(z, 'from index.jsx')
-ReactDOM.render(<p>test</p>, document.getElementById('root'))
+ReactDOM.render(<p>test {z}</p>, document.getElementById('example'))

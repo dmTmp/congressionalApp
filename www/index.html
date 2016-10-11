@@ -16,7 +16,8 @@
     </head>
     <body>
       <script type="text/javascript">console.log('from script tag');</script>
-      <script type="text/javascript" src="index.min.js"></script>
+      
+      <div id="example"></div>
       <script type="text/javascript">f();</script>
         <div class="app">
             <h1 onclick="f()">Apache Cordova</h1>
@@ -27,5 +28,6 @@
         </div>
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="scripts/platformOverrides.js"></script>
+        <script type="text/javascript" src="index.min.js"></script>
     </body>
 </html>
