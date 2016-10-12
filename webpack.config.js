@@ -1,14 +1,16 @@
 var webpack = require('webpack')
+var AppCachePlugin = require('appcache-webpack-plugin');
 
 module.exports = {
-    devtool: 'eval-source-map',
+    devtool: 'source-map',
     entry: {index:'./src/index.jsx'},
     output: {
         path: './www',
-        filename: '[name].min.js'
+        filename: '[name].min.js',
+        sourceMapFilename: 'sourcemap.js'
     },
     module: {
-        loaders: [
+      loaders: [
             {
                 test: [/\.jsx$/],
                 exclude: /node_modules/,
@@ -24,6 +26,14 @@ module.exports = {
         new webpack.optimize.DedupePlugin(),
         new webpack.optimize.OccurenceOrderPlugin(),
         new webpack.optimize.UglifyJsPlugin({compress:true, mangle:true}),
-        new webpack.optimize.CommonsChunkPlugin({name:'lib'})
+        new webpack.optimize.CommonsChunkPlugin({name:'lib'}),
+        new AppCachePlugin({
+            cache: ['index.html', /\.jsx$/],
+            //network: null,  // No network access allowed!
+            //fallback: ['failwhale.jpg'],
+            //settings: ['prefer-online'],
+            //exclude: ['file.txt', /.*\.js$/],  // Exclude file.txt and all .js files
+            //output: 'my-manifest.appcache'
+        })
     ],
 }
