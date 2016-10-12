@@ -26,7 +26,7 @@
   "scripts": {
     "start": "http-server www",
     "build": "webpack",
-    "check": "eslint",
+    "check": "eslint src/*",
     "run-emulator": "cordova run android"
   }
 }

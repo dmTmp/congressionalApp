@@ -1,15 +1,11 @@
-//https://gist.github.com/learncodeacademy/25092d8f1daf5e4a6fd3
-//var debug = process.env.NODE_ENV !== "production";
 var webpack = require('webpack')
 
 module.exports = {
-//  context: __dirname + '/src/',
-//  devtool: "inline-sourcemap",
-    entry: './src/index.jsx',
-//  target: 'web',
+    devtool: 'eval-source-map',
+    entry: {index:'./src/index.jsx'},
     output: {
         path: './www',
-        filename: 'index.min.js'
+        filename: '[name].min.js'
     },
     module: {
         loaders: [
@@ -26,6 +22,8 @@ module.exports = {
     },
     plugins: [
         new webpack.optimize.DedupePlugin(),
-        new webpack.optimize.OccurenceOrderPlugin()
+        new webpack.optimize.OccurenceOrderPlugin(),
+        new webpack.optimize.UglifyJsPlugin({compress:true, mangle:true}),
+        new webpack.optimize.CommonsChunkPlugin({name:'lib'})
     ],
 }
