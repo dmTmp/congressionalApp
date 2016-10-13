@@ -6,3 +6,7 @@
 /[Pp]latforms/
 /node_modules
 /www/index.min.js
+www/lib.min.js
+www/manifest.appcache
+www/sourcemap.js
+
