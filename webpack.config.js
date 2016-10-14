@@ -3,7 +3,7 @@ var AppCachePlugin = require('appcache-webpack-plugin');
 
 module.exports = {
     devtool: 'source-map',
-    entry: {index:'./src/index.jsx'},
+    entry: {reactRender:'./src/render.jsx'},
     output: {
         path: './www',
         filename: '[name].min.js',

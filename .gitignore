@@ -5,7 +5,7 @@
 [Pp]lugins/remote_ios.json
 /[Pp]latforms/
 /node_modules
-/www/index.min.js
+/www/reactRender.min.js
 www/lib.min.js
 www/manifest.appcache
 www/sourcemap.js
