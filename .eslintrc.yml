@@ -24,3 +24,5 @@ rules:
   semi:
     - error
     - never
+  no-console: warn
+  no-unused-vars: warn
