@@ -29,7 +29,7 @@
   "scripts": {
     "start": "http-server www",
     "build": "webpack",
-    "check": "eslint src/*",
+    "check": "flow check",
     "run-emulator": "cordova run android",
     "test": "webpack --watch & npm run start",
     "cordova-list": "cordova requirements",
