@@ -16,7 +16,7 @@ module.exports = {
                 exclude: /node_modules/,
                 loader: 'babel',
                 query: {
-                    plugins: ['transform-flow-strip-types', 'transform-react-jsx'],
+                    plugins: ['transform-flow-strip-types', 'transform-react-jsx', 'transform-object-rest-spread'],
                     presets: ['es2015', 'react']
                 }
             }
