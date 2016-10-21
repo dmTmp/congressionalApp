@@ -13,7 +13,7 @@ class User {
         hash.update(this.name + '\n' + this.rnd)
         return hash.digest('hex')
     }
-    getAddress() {
+    getAddress(): string /*hex*/ {
         const hash = crypto.createHash('sha256')
         hash.update(this.getKey())
         return hash.digest('hex')
@@ -22,7 +22,7 @@ class User {
 export default User
 
 
-function reducer(state:?User = null, action:{type:string, payload:?User}) {
+function reducer(state:?User = null, action:{type:string, payload:?User}):?User {
     if (state == null) return action.payload
     switch(action.type) {
         case 'DELETE':
