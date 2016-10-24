@@ -4,7 +4,7 @@ import crypto from 'crypto'
 class User {
     name: string
     rnd: number
-    constructor(name: string, rnd: number) {
+    constructor(name: string, rnd: number = window.crypto.getRandomValues(new Uint32Array(1))[0]) {
         this.name = name
         this.rnd = rnd
     }
