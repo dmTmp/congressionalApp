@@ -1,3 +1,4 @@
+// @flow
 import User from './user.jsx'
 import { connect } from 'react-redux'
 import React from 'react'
