@@ -32,7 +32,7 @@ const Initialize = (props:ComponentProps) => {
     <p>address:{props.address}</p>
     <img src='http://vignette4.wikia.nocookie.net/deusex/images/d/d4/JANUS1.png/revision/latest/scale-to-width-down/121?cb=20130607203345&path-prefix=en'/>
     <p onClick={props.delete}>DELETE</p>
-    <input onChange={props.updateName}/>
+    <input onChange={props.updateName} value={props.name}/>
   </div>
 }
 function mapStateToProps(state) {
