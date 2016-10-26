@@ -2,6 +2,7 @@
 import User from './user.jsx'
 import { connect } from 'react-redux'
 import React from 'react'
+import EditableText from '../editable.jsx'
 
 type ActionType = {type:string, payload?:User, newName?:string}
 function reducer(state:User = new User(''), action:ActionType = {type:''}):User {
@@ -24,21 +25,24 @@ function reducer(state:User = new User(''), action:ActionType = {type:''}):User 
 
 export {reducer}
 
-type ComponentProps = {name:string, address:string, delete:() => null, updateName:(x:any) => null}
-const Initialize = (props:ComponentProps) => {
-  return <div>
+type ComponentProps = {name:string, address:string, delete:() => void, updateName:(x:any) => void, edit:boolean, toggleEdit:() => void}
+const Initialize = (props:ComponentProps) =>
+  <div>
     <h1>Update Profile</h1>
-    <p>name:{props.name}</p>
-    <p>address:{props.address}</p>
     <img src='http://vignette4.wikia.nocookie.net/deusex/images/d/d4/JANUS1.png/revision/latest/scale-to-width-down/121?cb=20130607203345&path-prefix=en'/>
+    <EditableText lastValue={props.name} edit={props.edit} update={props.updateName} toggleEdit={props.toggleEdit}/>
+    <p>address:{props.address}</p>
     <p onClick={props.delete}>DELETE</p>
-    <input onChange={props.updateName} value={props.name}/>
   </div>
-}
+
 function mapStateToProps(state) {
-  return state == null
+  const x = state.user == null
     ? {name:'',          address:''}
-    : {name: state.name, address: state.getAddress(),
+    : {name: state.user.name, address: state.user.getAddress(),
+  }
+  return {
+    ...x,
+    edit: state.windowVars.edit
   }
 }
 const mapDispatchToProps = (dispatch) => {
@@ -47,8 +51,10 @@ const mapDispatchToProps = (dispatch) => {
       dispatch({type:'DELETE'})
     },
     updateName: event => {
-      //console.log(event.target.value)
       dispatch({type:'UPDATE_NAME', newName:event.target.value})
+    },
+    toggleEdit: () => {
+      dispatch({type:'TOGGLE'})
     }
   }
 }
