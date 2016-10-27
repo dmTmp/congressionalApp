@@ -1,7 +1,7 @@
 // @flow
 import crypto from 'crypto-browserify'
 
-export default class {
+class User {
     name: string
     rnd: number
     constructor(name: string, rnd: number = window.crypto.getRandomValues(new Uint32Array(1))[0]) {
@@ -35,4 +35,12 @@ export default class {
             .update(message, 'hex', 'utf8')
             + decipher.final('utf8');
     }
+    saveToStorage() {
+        if (typeof(Storage) !== "undefined") {
+            localStorage.user = JSON.stringify(new User(this.name, this.rng))
+        } else {
+            console.log('cannot store profile on page close')
+        }
+    }
 }
+export default User
