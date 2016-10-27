@@ -14,7 +14,6 @@ function reducer(state:User = new User(''), action:ActionType = {type:''}):User 
            ? action.payload
            : state
         case 'UPDATE_NAME': //only use in initial creation
-          console.log(action.newName, state)
           return typeof action.newName === 'string'  && typeof state === 'object'
             ? new User(action.newName, state.rnd)
             : reducer(undefined)
