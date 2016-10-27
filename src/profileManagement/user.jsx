@@ -1,5 +1,5 @@
 // @flow
-import crypto from 'crypto'
+import crypto from 'crypto-browserify'
 
 export default class {
     name: string
@@ -20,5 +20,19 @@ export default class {
     }
     display() {
       return {...this, key:this.getKey(), address:this.getAddress()}
+    }
+    encrypt(message:string): string /*hex*/ {
+        const cipher = crypto.createCipher('aes192', this.getKey());
+
+        return cipher
+            .update(message, 'utf8', 'hex')
+            + cipher.final('hex')
+    }
+    decrypt(message:string): string /*hex*/ {
+        const decipher = crypto.createDecipher('aes192', this.getKey());
+
+        return decipher
+            .update(message, 'hex', 'utf8')
+            + decipher.final('utf8');
     }
 }

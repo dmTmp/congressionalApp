@@ -19,6 +19,11 @@ module.exports = {
                     plugins: ['transform-flow-strip-types', 'transform-react-jsx', 'transform-object-rest-spread'],
                     presets: ['es2015', 'react']
                 }
+            },
+            {
+                test: /\.json$/,
+                loader: "json-loader",
+                //query: { mimetype: "image/png" }
             }
         ]
     },
