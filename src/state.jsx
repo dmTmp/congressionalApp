@@ -1,3 +1,6 @@
+import { combineReducers } from 'redux'
+import { reducer as user } from './profileManagement/view.jsx'
+
 function windowVars(state = {edit:true}, action: {type: string} = {type:''}) {
   switch (action.type) {
     case 'TOGGLE':
@@ -9,7 +12,7 @@ function windowVars(state = {edit:true}, action: {type: string} = {type:''}) {
   }
 }
 
-export const combined = combineReducers({
+export default combineReducers({
   windowVars,
   user
 })
