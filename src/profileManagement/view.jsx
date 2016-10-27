@@ -32,7 +32,7 @@ const Initialize = (props:ComponentProps) =>
     <img src='http://vignette4.wikia.nocookie.net/deusex/images/d/d4/JANUS1.png/revision/latest/scale-to-width-down/121?cb=20130607203345&path-prefix=en'/>
     <EditableText lastValue={props.name} edit={props.edit} update={props.updateName} toggleEdit={props.toggleEdit}/>
     <p>address:{props.address}</p>
-    <p onClick={props.delete}>DELETE</p>
+    <button onClick={props.delete}>DELETE</button>
   </div>
 
 function mapStateToProps(state) {
