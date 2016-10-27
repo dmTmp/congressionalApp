@@ -1,7 +1,18 @@
 // @flow
 import React from 'react'
 import ReactDOM from 'react-dom'
-import z from './flow/app.jsx'
+import { createStore } from 'redux'
+import { Provider } from 'react-redux'
+import User from './profileManagement/user.jsx'
+import { Container } from './profileManagement/view.jsx'
+import state from './state.jsx'
 
-console.log('from index1', document.getElementById('react'))
-ReactDOM.render(<p>test {z}</p>, document.getElementById('react'))
+const store = createStore(state)
+store.dispatch({type:'REPLACE', payload:new User('person')})
+store.dispatch({type:'UPDATE_NAME', newName:'John Smith'})
+
+ReactDOM.render(
+  <Provider store={store}>
+    <Container/>
+  </Provider>
+  , document.getElementById('react'))
