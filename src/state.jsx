@@ -1,39 +1,47 @@
 // @flow
 import { combineReducers } from 'redux'
 import { reducer as user } from './profileManagement/view.jsx'
+import User from './profileManagement/user.jsx'
 
-function windowVars(state = {edit:true, saved:false}, action: {type: string, what?: string} = {type:'', what:''}) {
-    if (action.type ==='TOGGLE') {
-        switch (action.what) {
-            case undefined:
-                return {
-                    ...state,
-                    edit: !state.edit
-                }
-            case 'EDIT':
-                return {
-                    ...state,
-                    edit: !state.edit
-                }
-            case 'saved':
-                return {
-                    ...state,
-                    saved: !state.saved
-                }
-
+type WindowVarsState = {edit:boolean, saved:boolean}
+function windowVars(state : WindowVarsState = {edit:true, saved:false}, action: {type: string, what?: string} = {type:'', what:''}): WindowVarsState {
+  if (action.type ==='TOGGLE') {
+    switch (action.what) {
+      case undefined:
+        return {
+          ...state,
+          edit: !state.edit
         }
-       } else {
-        return state
+      case 'EDIT':
+        return {
+          ...state,
+          edit: !state.edit
+        }
+      case 'SAVE':
+        return {
+          ...state,
+          saved: !state.saved
+        }
     }
-  /*switch (action.type) {
-    case :
-      
-    default:
-      return state
-  }*/
+  }
+  return state
 }
-
-export default combineReducers({
+type State = {windowVars: WindowVarsState, user: User}
+const combined: (x:State, y:any) => State = combineReducers({
   windowVars,
   user
 })
+
+export default combined
+
+function updateFromStorage(localStore: {user?:string}): Array<{type:string}> {
+    try {
+      return [
+        localStore.user !== undefined ? {type: 'UPDATE_NAME', newName:localStore.name} : {type:''}
+      ]
+    } catch(e) {
+      console.error('user failed to parse from local storage', e)
+      return []
+    }
+}
+export {updateFromStorage}
