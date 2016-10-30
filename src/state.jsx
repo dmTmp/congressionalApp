@@ -37,7 +37,7 @@ export default combined
 function updateFromStorage(localStore: {user?:string}): Array<{type:string}> {
     try {
       return [
-        localStore.user !== undefined ? {type: 'UPDATE_NAME', newName:localStore.name} : {type:''}
+        localStore.name !== undefined ? {type: 'UPDATE_NAME', newName:localStore.name} : {type:''}
       ]
     } catch(e) {
       console.error('user failed to parse from local storage', e)
