@@ -35,12 +35,5 @@ class User {
             .update(message, 'hex', 'utf8')
             + decipher.final('utf8');
     }
-    saveToStorage() {
-        if (typeof(Storage) !== "undefined") {
-            localStorage.user = JSON.stringify(new User(this.name, this.rng))
-        } else {
-            console.log('cannot store profile on page close')
-        }
-    }
 }
 export default User
