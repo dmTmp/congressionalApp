@@ -45,3 +45,18 @@ function updateFromStorage(localStore: {user?:string}): Array<{type:string}> {
     }
 }
 export {updateFromStorage}
+
+function setLocalStorage(store, localStorage) {
+  return () => {
+    if (typeof(Storage) !== "undefined") {
+      localStorage.clear()
+      let state = store.getState()
+      let user = state.user
+      localStorage.name = user.name
+      localStorage.rnd = user.rnd
+    } else {
+        console.warn('cannot store data on page close')
+    }
+  }
+}
+export {setLocalStorage}
