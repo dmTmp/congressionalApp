@@ -36,8 +36,10 @@ export default combined
 
 function updateFromStorage(localStore: {user?:string}): Array<{type:string}> {
     try {
+      let usr = JSON.parse(localStore.user)
       return [
-        localStore.name !== undefined ? {type: 'UPDATE_NAME', newName:localStore.name} : {type:''}
+        //localStore.name !== undefined ? {type: 'UPDATE_NAME', newName:localStore.name} : {type:''}
+        {type: 'REPLACE', payload:new User(usr.name, usr.rnd)}
       ]
     } catch(e) {
       console.error('user failed to parse from local storage', e)
@@ -48,12 +50,10 @@ export {updateFromStorage}
 
 function setLocalStorage(store, localStorage) {
   return () => {
-    if (typeof(Storage) !== "undefined") {
+    if (typeof(localStorage) !== "undefined") {
       localStorage.clear()
       let state = store.getState()
-      let user = state.user
-      localStorage.name = user.name
-      localStorage.rnd = user.rnd
+      localStorage.user = JSON.stringify(state.user)
     } else {
         console.warn('cannot store data on page close')
     }
