@@ -1,10 +1,10 @@
 // @flow
 import React from 'react'
 import ReactDOM from 'react-dom'
+
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
-import User from './profileManagement/user.jsx'
-import state, { updateFromStorage, setLocalStorage, initalize } from './state.jsx'
+import state, { initalize } from './state.jsx'
 import App from './app.jsx'
 
 const store = createStore(state)

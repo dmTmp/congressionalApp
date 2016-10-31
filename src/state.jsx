@@ -61,8 +61,8 @@ function setLocalStorage(store, localStorage) {
 }
 export {setLocalStorage}
 export const initalize = function(store) {
-    store.dispatch({type:'REPLACE', payload:new User('person')})
-    store.dispatch({type:'UPDATE_NAME', newName:'John Smith'})
+    store.dispatch({type:'REPLACE', payload:new User('John Smith')})
+    //store.dispatch({type:'UPDATE_NAME', newName:})
     updateFromStorage(localStorage)
       .forEach(e => store.dispatch(e))
     store.subscribe(setLocalStorage(store, localStorage))
