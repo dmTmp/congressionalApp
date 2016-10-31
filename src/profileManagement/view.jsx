@@ -26,9 +26,9 @@ export {reducer}
 
 type ComponentProps = {name:string, address:string, delete:() => void, updateName:(x:any) => void, edit:boolean, toggleEdit:() => void}
 const Initialize = (props:ComponentProps) =>
-  <div style={{display:'inline-block', width:'50%'}}>
+  <div style={{display:'inline-block', width:'50%', float:'left'}}>
     <h1>Update Profile</h1>
-    <img src='http://vignette4.wikia.nocookie.net/deusex/images/d/d4/JANUS1.png/revision/latest/scale-to-width-down/121?cb=20130607203345&path-prefix=en'/>
+    <img style={{display:'block', margin:'0 auto'}} src='http://vignette4.wikia.nocookie.net/deusex/images/d/d4/JANUS1.png/revision/latest/scale-to-width-down/121?cb=20130607203345&path-prefix=en'/>
     <EditableText lastValue={props.name} edit={props.edit} update={props.updateName} toggleEdit={props.toggleEdit}/>
     <p>address:{props.address}</p>
     <button onClick={props.delete}>DELETE</button>
