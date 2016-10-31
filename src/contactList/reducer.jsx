@@ -1,7 +1,7 @@
-function f<T>(state:Array<T> = [], action:{type:string, newContact?:T}) {
+function f<T>(state:Array<T> = [], action:{type:string, newContact?:T} = {type:''}) {
   switch(action.type) {
     case 'ADD_CONTACT':
-      return newContact !== undefined ? [...state, newContact] : state
+      return action.newContact !== undefined ? [...state, action.newContact] : state
     default:
       return state
   }
