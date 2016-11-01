@@ -13,10 +13,10 @@ class User {
         hash.update(this.name + '\n' + this.rnd)
         return hash.digest('hex')
     }
-    getAddress(): string /*hex*/ {
-        const hash = crypto.createHash('sha256')
-        hash.update(this.getKey())
-        return hash.digest('hex')
+    get address(): string /*hex*/ {
+      const hash = crypto.createHash('sha256')
+      hash.update(this.getKey())
+      return hash.digest('hex')
     }
     display() {
       return {...this, key:this.getKey(), address:this.getAddress()}

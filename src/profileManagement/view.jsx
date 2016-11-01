@@ -37,7 +37,7 @@ const Initialize = (props:ComponentProps) =>
 function mapStateToProps(state) {
   const x = state.user == null
     ? {name:'',          address:''}
-    : {name: state.user.name, address: state.user.getAddress(),
+    : {name: state.user.name, address: state.user.address,
   }
   return {
     ...x,
