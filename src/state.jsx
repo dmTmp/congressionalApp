@@ -4,6 +4,7 @@ import { reducer as user } from './profileManagement/view.jsx'
 import User from './profileManagement/user.jsx'
 import Contact from './contactList/contact.jsx'
 import contacts from './contactList/reducer.jsx'
+import {updateFromStorage, setLocalStorage} from './localStore.jsx'
 
 type WindowVarsState = {edit:boolean, saved:boolean}
 function windowVars(state : WindowVarsState = {edit:true, saved:false}, action: {type: string, what?: string} = {type:'', what:''}): WindowVarsState {
@@ -29,43 +30,13 @@ function windowVars(state : WindowVarsState = {edit:true, saved:false}, action: 
   return state
 }
 type State = {windowVars: WindowVarsState, user: User, contacts:Array<Contact>}
-const combined: (x:State, y:any) => State = combineReducers({
+export default combineReducers({
   windowVars,
   user,
   contacts
 })
-
-export default combined
-
-function updateFromStorage(localStore: {user?:string}): Array<{type:string}> {
-    try {
-      let usr = JSON.parse(localStore.user)
-      return [
-        //localStore.name !== undefined ? {type: 'UPDATE_NAME', newName:localStore.name} : {type:''}
-        {type: 'REPLACE', payload:new User(usr.name, usr.rnd)}
-      ]
-    } catch(e) {
-      console.error('user failed to parse from local storage', e)
-      return []
-    }
-}
-export {updateFromStorage}
-
-function setLocalStorage(store, localStorage) {
-  return () => {
-    if (typeof(localStorage) !== "undefined") {
-      localStorage.clear()
-      let state = store.getState()
-      localStorage.user = JSON.stringify(state.user)
-    } else {
-        console.warn('cannot store data on page close')
-    }
-  }
-}
-export {setLocalStorage}
 export const initalize = function(store) {
     store.dispatch({type:'REPLACE', payload:new User('John Smith')})
-    //store.dispatch({type:'UPDATE_NAME', newName:})
     updateFromStorage(localStorage)
       .forEach(e => store.dispatch(e))
     console.log(contacts)
