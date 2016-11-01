@@ -1,19 +1,21 @@
 // @flow
-import User from './profileManagement/user.jsx'
+import {User} from './profileManagement/profile.jsx'
 
 export const updateFromStorage = function(localStore: {user?:string}): Array<{type:string}> {
-    try {
-      let usr = JSON.parse(localStore.user)
-      return [
-        {type: 'REPLACE', payload:new User(usr.name, usr.rnd)}
-      ]
-    } catch(e) {
-      console.error('user failed to parse from local storage', e)
-      return []
-    }
+  const getUser = user => {
+    const usr = JSON.parse(user)
+    return {type: 'REPLACE', payload:new User(usr.name, usr.rnd)}
+  }
+  const getUserErr = localStore => {
+    if (localStore.user === undefined) return {type:''}
+    return getUser(localStore.user)
+  }
+  return [
+    getUserErr(localStore)
+  ]
 }
 
-export const setLocalStorage = function(store, localStorage) {
+export const setLocalStorage = function(store:any, localStorage:any) {
   return () => {
     if (typeof(localStorage) !== "undefined") {
       localStorage.clear()

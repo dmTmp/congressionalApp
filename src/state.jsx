@@ -1,8 +1,9 @@
 // @flow
 import { combineReducers } from 'redux'
 import { reducer as user } from './profileManagement/view.jsx'
-import User from './profileManagement/user.jsx'
-import Contact from './contactList/contact.jsx'
+//import User from './profileManagement/user.jsx'
+import {Profile as Contact, User} from './profileManagement/profile.jsx'
+//import Contact from './contactList/contact.jsx'
 import contacts from './contactList/reducer.jsx'
 import {updateFromStorage, setLocalStorage} from './localStore.jsx'
 
@@ -35,7 +36,7 @@ export default combineReducers({
   user,
   contacts
 })
-export const initalize = function(store) {
+export const initalize = function(store:any) {
     store.dispatch({type:'REPLACE', payload:new User('John Smith')})
     updateFromStorage(localStorage)
       .forEach(e => store.dispatch(e))

@@ -1,5 +1,5 @@
 // @flow
-import User from './user.jsx'
+import {User} from './profile.jsx'
 import { connect } from 'react-redux'
 import React from 'react'
 import EditableText from '../editable.jsx'
@@ -37,7 +37,7 @@ const Initialize = (props:ComponentProps) =>
 function mapStateToProps(state) {
   const x = state.user == null
     ? {name:'',          address:''}
-    : {name: state.user.name, address: state.user.address,
+    : {name: state.user.name, address: state.user.getAddress(),
   }
   return {
     ...x,

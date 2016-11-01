@@ -1,20 +1,7 @@
 // @flow
 import crypto from 'crypto-browserify'
 import React from 'react'
-
-class Contact {
-    name: string
-    address: number
-    picture: ?string
-    constructor(name: string, address: number) {
-        this.name = name
-        this.address = address
-    }
-    getAddress(): string /*hex*/ {
-        return this.address
-    }
-}
-export default Contact
+import {Profile as Contact} from '../profileManagement/profile.jsx'
 
 function View(props:{profile:Contact}) {
   const pic = props.profile.picture
@@ -25,7 +12,7 @@ function View(props:{profile:Contact}) {
     <button>send message</button>
   </div>
 }
-function ViewList(props:{contacts:Array<T>}) {
+function ViewList(props:{contacts:Array<Contact>}) {
   return <div style={{width:'50%', float:'right'}}>{props
     .contacts
     .map(x => <View profile={x}/>)}</div>
