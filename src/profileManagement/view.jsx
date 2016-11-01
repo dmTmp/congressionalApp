@@ -4,26 +4,6 @@ import { connect } from 'react-redux'
 import React from 'react'
 import EditableText from '../editable.jsx'
 
-type ActionType = {type:string, payload?:User, newName?:string}
-function reducer(state:User = new User(''), action:ActionType = {type:''}):User {
-    switch(action.type) {
-        case 'DELETE':
-            return reducer(undefined);
-        case 'REPLACE':
-          return typeof action.payload === 'object'
-           ? action.payload
-           : state
-        case 'UPDATE_NAME': //only use in initial creation
-          return typeof action.newName === 'string'  && typeof state === 'object'
-            ? new User(action.newName, state.rnd)
-            : reducer(undefined)
-        default:
-            return state
-    }
-}
-
-export {reducer}
-
 type ComponentProps = {name:string, address:string, delete:() => void, updateName:(x:any) => void, edit:boolean, toggleEdit:() => void}
 const Initialize = (props:ComponentProps) =>
   <div style={{display:'inline-block', width:'50%', float:'left'}}>
@@ -34,6 +14,7 @@ const Initialize = (props:ComponentProps) =>
     <button onClick={props.delete}>DELETE</button>
   </div>
 
+//redux bindings
 function mapStateToProps(state) {
   const x = state.user == null
     ? {name:'',          address:''}

@@ -1,10 +1,10 @@
 // @flow
+
 import { combineReducers } from 'redux'
-import { reducer as user } from './profileManagement/view.jsx'
-//import User from './profileManagement/user.jsx'
+
 import {Profile as Contact, User} from './profileManagement/profile.jsx'
-//import Contact from './contactList/contact.jsx'
-import contacts from './contactList/reducer.jsx'
+import user from './profileManagement/state.jsx'
+import contacts from './contactList/state.jsx'
 import {updateFromStorage, setLocalStorage} from './localStore.jsx'
 
 type WindowVarsState = {edit:boolean, saved:boolean}
