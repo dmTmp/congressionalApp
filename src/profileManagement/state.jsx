@@ -18,3 +18,12 @@ export default function(state:User = new User(''), action:ActionType = {type:''}
             return state
     }
 }
+export const deleteProfile = function() {
+    return {type:'DELETE'}
+}
+export const replaceProfile = function(newProfile) {
+    return {type:'replace', payload:newProfile}
+}
+export const updateProfile = function(newName) {
+    return {type:'UPDATE', newName:newName}
+}
