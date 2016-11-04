@@ -1,10 +1,11 @@
 // @flow
 import {User} from './profileManagement/profile.jsx'
+import {replaceProfile} from './profileManagement/state.jsx'
 
 export const updateFromStorage = function(localStore: {user?:string}): Array<{type:string}> {
   const getUser = user => {
     const usr = JSON.parse(user)
-    return {type: 'REPLACE', payload:new User(usr.name, usr.rnd)}
+    return replaceProfile(new User(usr.name, usr.rnd))
   }
   const getUserErr = localStore => {
     if (localStore.user === undefined) return {type:''}

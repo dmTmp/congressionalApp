@@ -9,6 +9,7 @@ import App from './app.jsx'
 
 const store = createStore(state)
 initalize(store)
+console.log(store.getState())
 
 ReactDOM.render(
   <Provider store={store}>

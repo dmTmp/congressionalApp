@@ -3,8 +3,8 @@
 import { combineReducers } from 'redux'
 
 import {Profile as Contact, User} from './profileManagement/profile.jsx'
-import user from './profileManagement/state.jsx'
-import contacts from './contactList/state.jsx'
+import user, {addProfile, removeProfile, replaceProfile} from './profileManagement/state.jsx'
+import contacts, {addContact} from './contactList/state.jsx'
 import {updateFromStorage, setLocalStorage} from './localStore.jsx'
 
 type WindowVarsState = {edit:boolean, saved:boolean}
@@ -37,11 +37,9 @@ export default combineReducers({
   contacts
 })
 export const initalize = function(store:any) {
-    store.dispatch({type:'REPLACE', payload:new User('John Smith')})
+    store.dispatch(replaceProfile(new User('John Smith'))) //defualt user
     updateFromStorage(localStorage)
-      .forEach(e => store.dispatch(e))
-    console.log(contacts)
-    store.dispatch({type:'ADD_CONTACT', newContact:new Contact('Jane', '3498t53498gu89fug98f7896f')})
-    console.log(store.getState())
-    store.subscribe(setLocalStorage(store, localStorage))
+      .forEach(e => store.dispatch(e)) //load variables from localStore if available
+    store.dispatch(addContact(new Contact('Jane', '3498t53498gu89fug98f7896f')))
+    store.subscribe(setLocalStorage(store, localStorage)) //update localStorage on dispatch
 }

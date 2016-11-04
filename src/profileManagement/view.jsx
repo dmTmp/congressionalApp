@@ -3,6 +3,7 @@ import {User} from './profile.jsx'
 import { connect } from 'react-redux'
 import React from 'react'
 import EditableText from '../editable.jsx'
+import {deleteProfile, replaceProfile, updateProfile} from './state.jsx'
 
 type ComponentProps = {name:string, address:string, delete:() => void, updateName:(x:any) => void, edit:boolean, toggleEdit:() => void}
 const Initialize = (props:ComponentProps) =>
@@ -28,10 +29,10 @@ function mapStateToProps(state) {
 const mapDispatchToProps = (dispatch) => {
   return {
     delete: () => {
-      dispatch({type:'DELETE'})
+      dispatch(deleteProfile())
     },
     updateName: event => {
-      dispatch({type:'UPDATE_NAME', newName:event.target.value})
+      dispatch(updateProfile(event.target.value))
     },
     toggleEdit: () => {
       dispatch({type:'TOGGLE'})

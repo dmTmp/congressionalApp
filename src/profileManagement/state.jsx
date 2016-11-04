@@ -2,7 +2,7 @@
 import {User} from './profile.jsx'
 
 type ActionType = {type:string, payload?:User, newName?:string}
-export default function(state:User = new User(''), action:ActionType = {type:''}):User {
+function reducer(state:User = new User(''), action:ActionType = {type:''}):User {
     switch(action.type) {
         case 'DELETE':
             return reducer(undefined);
@@ -18,12 +18,13 @@ export default function(state:User = new User(''), action:ActionType = {type:''}
             return state
     }
 }
+export default reducer
 export const deleteProfile = function() {
     return {type:'DELETE'}
 }
 export const replaceProfile = function(newProfile) {
-    return {type:'replace', payload:newProfile}
+    return {type:'REPLACE', payload:newProfile}
 }
 export const updateProfile = function(newName) {
-    return {type:'UPDATE', newName:newName}
+    return {type:'UPDATE_NAME', newName:newName}
 }
