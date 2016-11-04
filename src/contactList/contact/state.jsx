@@ -4,22 +4,22 @@ import {Profile as Contact} from '../../profileManagement/profile.jsx'
 type State = {profile:Contact, messageBox:boolean, messageText:string}
 export default function(state:State | {} = {}, action) {
     switch(action.type) {
-        case 'ADD_CONTACT':
+        case 'CONTACT_ADD':
             return {
                 ...state,
                 profile:action.newContact,
                 messageBox: false,
                 messageText: ''
             }
-        case 'REMOVE_CONTACT':
+        case 'CONTACT_REMOVE':
             return {}
         default:
             return state
     }
 }
 export const addContact = function(newContact) {
-    return {type:'ADD_CONTACT', newContact:newContact}
+    return {type:'CONTACT_ADD', newContact:newContact}
 }
 export const removeContact = function() {
-    return {type:'REMOVE_CONTACT'}
+    return {type:'CONTACT_REMOVE'}
 }

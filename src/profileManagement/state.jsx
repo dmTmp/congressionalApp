@@ -4,13 +4,13 @@ import {User} from './profile.jsx'
 type ActionType = {type:string, payload?:User, newName?:string}
 function reducer(state:User = new User(''), action:ActionType = {type:''}):User {
     switch(action.type) {
-        case 'DELETE':
+        case 'PROFILE_DELETE':
             return reducer(undefined);
-        case 'REPLACE':
+        case 'PROFILE_REPLACE':
           return typeof action.payload === 'object'
            ? action.payload
            : state
-        case 'UPDATE_NAME': //only use in initial creation
+        case 'PROFILE_UPDATE_NAME': //only use in initial creation
           return typeof action.newName === 'string'  && typeof state === 'object'
             ? new User(action.newName, state.rnd)
             : reducer(undefined)
@@ -20,11 +20,11 @@ function reducer(state:User = new User(''), action:ActionType = {type:''}):User 
 }
 export default reducer
 export const deleteProfile = function() {
-    return {type:'DELETE'}
+    return {type:'PROFILE_DELETE'}
 }
 export const replaceProfile = function(newProfile) {
-    return {type:'REPLACE', payload:newProfile}
+    return {type:'PROFILE_REPLACE', payload:newProfile}
 }
 export const updateProfile = function(newName) {
-    return {type:'UPDATE_NAME', newName:newName}
+    return {type:'PROFILE_UPDATE_NAME', newName:newName}
 }
