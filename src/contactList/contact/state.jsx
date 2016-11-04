@@ -17,3 +17,9 @@ export default function(state:State | {} = {}, action) {
             return state
     }
 }
+export const addContact = function(newContact) {
+    return {type:'ADD_CONTACT', newContact:newContact}
+}
+export const removeContact = function() {
+    return {type:'REMOVE_CONTACT'}
+}
