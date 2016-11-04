@@ -2,7 +2,7 @@
 import {User} from './profile.jsx'
 
 type ActionType = {type:string, payload?:User, newName?:string}
-function reducer(state:User = new User(''), action:ActionType = {type:''}):User {
+export default function reducer(state:User = new User(''), action:ActionType = {type:''}):User {
     switch(action.type) {
         case 'PROFILE_DELETE':
             return reducer(undefined);
@@ -18,7 +18,6 @@ function reducer(state:User = new User(''), action:ActionType = {type:''}):User 
             return state
     }
 }
-export default reducer
 export const deleteProfile = function() {
     return {type:'PROFILE_DELETE'}
 }

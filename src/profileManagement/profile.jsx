@@ -1,7 +1,7 @@
 // @flow
 import crypto from 'crypto-browserify'
 
-class Profile {
+export class Profile {
     name: string
     address: string
     picture: ?string
@@ -13,7 +13,7 @@ class Profile {
         return this.address
     }
 }
-class User extends Profile {
+export class User extends Profile {
     name: string
     rnd: number
     constructor(name: string, rnd: number = window.crypto.getRandomValues(new Uint32Array(1))[0], picture:?string) {
@@ -46,4 +46,3 @@ class User extends Profile {
             + decipher.final('utf8');
     }
 }
-export {Profile, User}
