@@ -30,7 +30,7 @@ function windowVars(state : WindowVarsState = {edit:true, saved:false}, action: 
   }
   return state
 }
-type State = {windowVars: WindowVarsState, user: User, contacts:Array<Contact>}
+export type State = {windowVars: WindowVarsState, user: User, contacts:Array<Contact>}
 export default combineReducers({
   windowVars,
   user,

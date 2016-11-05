@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import React from 'react'
 import EditableText from '../editable.jsx'
 import {deleteProfile, replaceProfile, updateProfile} from './state.jsx'
+import type State from '../state.jsx'
 
 type ComponentProps = {name:string, address:string, delete:() => void, updateName:(x:any) => void, edit:boolean, toggleEdit:() => void}
 const Initialize = (props:ComponentProps) =>
@@ -16,7 +17,7 @@ const Initialize = (props:ComponentProps) =>
   </div>
 
 //redux bindings
-function mapStateToProps(state) {
+function mapStateToProps(state:State) {
   const x = state.user == null
     ? {name:'',          address:''}
     : {name: state.user.name, address: state.user.getAddress(),
