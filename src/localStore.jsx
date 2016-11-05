@@ -2,7 +2,7 @@
 import {User} from './profileManagement/profile.jsx'
 import {replaceProfile} from './profileManagement/state.jsx'
 
-export const updateFromStorage = function(localStore: {user?:string}): Array<{type:string}> {
+export const updateFromStorage = function(localStore: {user?:string}): Array<any> {
   const getUser = user => {
     const usr = JSON.parse(user)
     return replaceProfile(new User(usr.name, usr.rnd))
@@ -12,7 +12,7 @@ export const updateFromStorage = function(localStore: {user?:string}): Array<{ty
     return getUser(localStore.user)
   }
   return [
-    getUserErr(localStore)
+    [getUserErr(localStore)]
   ]
 }
 

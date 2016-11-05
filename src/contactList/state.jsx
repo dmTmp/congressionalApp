@@ -14,7 +14,7 @@ export default function (state:Array<State> = [], action:AddContact):Array<State
       return state
   }
 }
-type AddContact = {type:string, newContact:Contact}
+type AddContact = {type:'CONTACT_ADD', newContact:Contact}
 export const addContact = function(newContact:Contact):AddContact {
     return {type:'CONTACT_ADD', newContact:newContact}
 }

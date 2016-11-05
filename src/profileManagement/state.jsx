@@ -1,29 +1,28 @@
 // @flow
 import {User} from './profile.jsx'
 
-type ActionType = {type:string, payload?:User, newName?:string}
-export default function reducer(state:User = new User(''), action:ActionType = {type:''}):User {
+//type ActionType = {type:string, payload?:User, newName?:string}
+export default function reducer(state:User = new User(''), action:DeleteProfile | ReplaceProfile | UpdateProfile):User {
     switch(action.type) {
         case 'PROFILE_DELETE':
-            return reducer(undefined);
+            return reducer(undefined, action);
         case 'PROFILE_REPLACE':
-          return typeof action.payload === 'object'
-           ? action.payload
-           : state
+          return action.payload
         case 'PROFILE_UPDATE_NAME': //only use in initial creation
-          return typeof action.newName === 'string'  && typeof state === 'object'
-            ? new User(action.newName, state.rnd)
-            : reducer(undefined)
+          return new User(action.newName, state.rnd)
         default:
             return state
     }
 }
-export const deleteProfile = function() {
+type DeleteProfile = {type:'PROFILE_DELETE'}
+export const deleteProfile = function():DeleteProfile {
     return {type:'PROFILE_DELETE'}
 }
-export const replaceProfile = function(newProfile:User) {
+type ReplaceProfile = {type:'PROFILE_REPLACE', payload:User}
+export const replaceProfile = function(newProfile:User):ReplaceProfile {
     return {type:'PROFILE_REPLACE', payload:newProfile}
 }
-export const updateProfile = function(newName:string) {
+type UpdateProfile = {type:'PROFILE_UPDATE_NAME', newName:string}
+export const updateProfile = function(newName:string):UpdateProfile {
     return {type:'PROFILE_UPDATE_NAME', newName:newName}
 }
