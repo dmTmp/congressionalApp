@@ -12,7 +12,7 @@ export const updateFromStorage = function(localStore: {user?:string}): Array<any
     return getUser(localStore.user)
   }
   return [
-    [getUserErr(localStore)]
+    getUserErr(localStore)
   ]
 }
 
