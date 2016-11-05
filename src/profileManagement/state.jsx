@@ -21,9 +21,9 @@ export default function reducer(state:User = new User(''), action:ActionType = {
 export const deleteProfile = function() {
     return {type:'PROFILE_DELETE'}
 }
-export const replaceProfile = function(newProfile) {
+export const replaceProfile = function(newProfile:User) {
     return {type:'PROFILE_REPLACE', payload:newProfile}
 }
-export const updateProfile = function(newName) {
+export const updateProfile = function(newName:string) {
     return {type:'PROFILE_UPDATE_NAME', newName:newName}
 }

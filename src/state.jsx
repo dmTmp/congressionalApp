@@ -3,7 +3,7 @@
 import { combineReducers } from 'redux'
 
 import {Profile as Contact, User} from './profileManagement/profile.jsx'
-import user, {addProfile, removeProfile, replaceProfile} from './profileManagement/state.jsx'
+import user, {updateProfile, deleteProfile, replaceProfile} from './profileManagement/state.jsx'
 import contacts, {addContact} from './contactList/state.jsx'
 import {updateFromStorage, setLocalStorage} from './localStore.jsx'
 

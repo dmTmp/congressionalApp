@@ -1,5 +1,6 @@
 ﻿// @flow
 import React from 'react'
+import {Profile as Contact} from '../../profileManagement/profile.jsx'
 
 export default function (props:{profile:Contact}) {
   const pic = props.profile.picture

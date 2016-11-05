@@ -1,25 +1,26 @@
 ﻿// @flow
 import {Profile as Contact} from '../../profileManagement/profile.jsx'
 
-type State = {profile:Contact, messageBox:boolean, messageText:string}
-export default function(state:State | {} = {}, action) {
+export type State = {profile:Contact, messageBox:boolean, messageText:string}
+export default function(state:?State = null, action: AddContact | RemoveContact):?State {
     switch(action.type) {
         case 'CONTACT_ADD':
             return {
-                ...state,
                 profile:action.newContact,
                 messageBox: false,
                 messageText: ''
             }
         case 'CONTACT_REMOVE':
-            return {}
+            return null
         default:
             return state
     }
 }
-export const addContact = function(newContact) {
+type AddContact = {type:'CONTACT_ADD', newContact:Contact}
+export const addContact = function(newContact:Contact):AddContact {
     return {type:'CONTACT_ADD', newContact:newContact}
 }
-export const removeContact = function() {
+type RemoveContact = {type:'CONTACT_REMOVE'}
+export const removeContact = function():RemoveContact {
     return {type:'CONTACT_REMOVE'}
 }
