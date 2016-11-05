@@ -41,5 +41,7 @@ export const initalize = function(store:any) {
     updateFromStorage(localStorage)
       .forEach(e => store.dispatch(e)) //load variables from localStore if available
     store.dispatch(addContact(new Contact('Jane', '3498t53498gu89fug98f7896f')))
+    store.dispatch(addContact(new Contact('Jack', 'ljj8te349wlu8rdug98fr896f')))
+    store.dispatch(addContact(new Contact('Jim', 'ljj8te349wlu8rdug98fr896f')))
     store.subscribe(setLocalStorage(store, localStorage)) //update localStorage on dispatch
 }
