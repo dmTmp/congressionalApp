@@ -35,6 +35,7 @@
     "run-emulator": "cordova run android",
     "test": "webpack --watch & npm run start",
     "cordova-list": "cordova requirements",
-    "cordova-requirements": "cordova requirements"
+    "cordova-requirements": "cordova requirements",
+    "run-tests": "webpack --config tests.config.js && mocha tests/main.min.js"
   }
 }

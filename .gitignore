@@ -10,3 +10,4 @@ www/lib.min.js
 www/manifest.appcache
 www/sourcemap.js
 bin
+tests
