@@ -1,5 +1,10 @@
 // @flow
-import crypto from 'crypto-browserify'
+const crypto = require(
+  typeof(window) === 'undefined'
+    ? 'crypto-browserify'
+    : 'crypto'
+)
+//import crypto from 'crypto'
 
 export class Profile {
     name: string
@@ -16,8 +21,8 @@ export class Profile {
 export class User extends Profile {
     name: string
     rnd: number
-    constructor(name: string, rnd: number = window.crypto.getRandomValues(new Uint32Array(1))[0], picture:?string) {
-      super(name, '', picture)
+    constructor(name: string, rnd: number = crypto.randomBytes(256).readInt32BE()) {
+      super(name, '', '')
         this.name = name
         this.rnd = rnd
     }

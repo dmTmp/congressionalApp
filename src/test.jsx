@@ -1,6 +1,7 @@
 var assert = require('assert')
 import contact from './contactList/contact/state.jsx'
-import {Profile as Contact} from './profileManagement/profile.jsx'
+import {Profile as Contact, User} from './profileManagement/profile.jsx'
+import profile, {replaceProfile} from './profileManagement/state.jsx'
 
 describe('Array', function() {
   describe('#indexOf()', function() {
@@ -16,5 +17,12 @@ describe('contact reducer', function() {
   it('new contact', () => {
     const c = new Contact('Person', '12')
     assert.equal(contact({}, {type:'CONTACT_ADD',newContact:c}).profile,c)
+  })
+})
+describe('profile management', () => {
+
+  it('intialize contact', () => {
+    const person = new User('Person')
+    assert.equal(person, profile(undefined, replaceProfile(person)))
   })
 })
